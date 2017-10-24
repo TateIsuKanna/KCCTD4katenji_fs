@@ -13,7 +13,7 @@ def stop_signal_callback():
 	pass
 
 def update_stopwatch_callback():
-	stopwatch_label_text.set("")
+	stopwatch_label_text.set(datetime.datetime.now()-start_time)
 
 def sound_signal_callback():
 	pass
