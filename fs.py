@@ -1,16 +1,20 @@
 import RPi.GPIO as GPIO
 from tkinter import *
 import datetime
+import pygame.mixer
 
 stopwatch_signal_channel=11
 sound_signal_channel=12
 
 is_timer_enable=False#本当は使わずに済ませたい
 
+pygame.mixer.init()
+pygame.mixer.music.load("/home/pi/Voices.mp3")
+
 def stopwatch_signal_callback(channel):
 	if GPIO.input(channel):
 		start_stopwatch()
-	else
+	else:
 		stop_stopwatch()
 
 def start_stopwatch():
@@ -30,7 +34,7 @@ def update_stopwatch_callback():
 		root.after(10,update_stopwatch_callback)
 
 def sound_signal_callback(channel):
-	pass
+	pygame.mixer.music.play()
 
 root = Tk()
 root.attributes("-fullscreen", True)
