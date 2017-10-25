@@ -8,13 +8,19 @@ sound_signal_channel=12
 is_timer_enable=False#本当は使わずに済ませたい
 
 def stopwatch_signal_callback(channel):
+	if GPIO.input(channel):
+		start_stopwatch()
+	else
+		stop_stopwatch()
+
+def start_stopwatch():
 	global start_time
 	start_time=datetime.datetime.now()
 	global is_timer_enable
 	is_timer_enable=True
 	update_stopwatch_callback()
 
-def stop_signal_callback(channel):
+def stop_stopwatch():
 	global is_timer_enable
 	is_timer_enable=False
 
